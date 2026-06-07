@@ -1,0 +1,79 @@
+@import "tailwindcss";
+
+@theme {
+  --color-ink: #ededed;
+  --color-body: #a1a1a1;
+  --color-mute: #666666;
+  --color-canvas: #171717;
+  --color-canvas-soft: #0a0a0a;
+  --color-canvas-soft-2: #222222;
+  --color-hairline: #2a2a2a;
+  --color-hairline-strong: #3a3a3a;
+  --color-on-primary: #171717;
+  --color-link: #3291ff;
+  --color-link-deep: #0070f3;
+  --color-link-bg-soft: #1a2940;
+  --color-success: #3291ff;
+  --color-error: #ff3333;
+  --color-error-soft: #3a1a1a;
+  --color-warning: #f5a623;
+  --color-warning-soft: #3a2a1a;
+  --color-violet: #7928ca;
+  --color-cyan: #50e3c2;
+  --color-highlight-pink: #ff0080;
+
+  --color-gradient-develop-start: #007cf0;
+  --color-gradient-develop-end: #00dfd8;
+  --color-gradient-preview-start: #7928ca;
+  --color-gradient-preview-end: #ff0080;
+  --color-gradient-ship-start: #ff4d4d;
+  --color-gradient-ship-end: #f9cb28;
+
+  --font-sans: Inter, system-ui, -apple-system, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, monospace;
+
+  --radius-xs: 4px;
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-pill: 100px;
+  --radius-full: 9999px;
+
+  --shadow-card: 0px 1px 1px rgba(255,255,255,0.05), 0px 2px 2px rgba(255,255,255,0.05);
+  --shadow-elevated: 0px 2px 2px rgba(255,255,255,0.03), 0px 8px 16px -4px rgba(255,255,255,0.08);
+  --shadow-modal: 0px 1px 1px rgba(255,255,255,0.03), 0px 8px 16px -4px rgba(255,255,255,0.06), 0px 24px 32px -8px rgba(255,255,255,0.10);
+
+  --animate-fade-in: fade-in 0.5s ease-out;
+  --animate-slide-up: slide-up 0.5s ease-out;
+}
+
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+input, button, select, textarea {
+  font-size: 16px;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  @keyframes fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  @keyframes slide-up {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+}
+
+body {
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}

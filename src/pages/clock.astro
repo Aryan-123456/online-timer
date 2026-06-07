@@ -1,0 +1,46 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout title="World Clock — Online Timer" description="Track current time across multiple timezones worldwide.">
+  <Nav currentPath="/clock" />
+
+  <main class="max-w-6xl mx-auto px-5 sm:px-6 py-8 sm:py-12">
+    <div class="text-center mb-8 sm:mb-10">
+      <h1 class="text-[clamp(1.35rem,5vw,2.5rem)] font-semibold leading-tight tracking-[-0.8px] sm:tracking-[-1.28px] text-ink mb-2 sm:mb-3">
+        World Clock
+      </h1>
+      <p class="text-body text-sm sm:text-base max-w-lg mx-auto">
+        Live time across major cities worldwide. Refreshes every second.
+      </p>
+    </div>
+    <div id="clock-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4"></div>
+  </main>
+
+  <div class="max-w-6xl mx-auto px-5 sm:px-6 pb-8 sm:pb-12">
+    <div class="bg-canvas rounded-lg border border-hairline p-4 sm:p-5">
+      <p class="text-[11px] sm:text-xs font-mono text-mute uppercase tracking-wider mb-2 sm:mb-3">Your Local Time</p>
+      <p id="local-time" class="text-xl sm:text-2xl font-semibold text-ink font-mono tracking-tight"></p>
+      <p id="local-date" class="text-sm text-body mt-1"></p>
+    </div>
+  </div>
+
+  <Footer />
+</Layout>
+
+<script>
+  import { initWorldClock } from '../lib/worldclock.js';
+  initWorldClock();
+
+  function updateLocal() {
+    const now = new Date();
+    const localTime = document.getElementById('local-time');
+    const localDate = document.getElementById('local-date');
+    if (localTime) localTime.textContent = now.toLocaleTimeString('en-US', { hour12: false });
+    if (localDate) localDate.textContent = now.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' });
+  }
+  updateLocal();
+  setInterval(updateLocal, 1000);
+</script>

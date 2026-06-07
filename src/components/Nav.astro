@@ -1,0 +1,73 @@
+---
+const { currentPath = '' } = Astro.props;
+
+const links = [
+  { href: '/', label: 'Home' },
+  { href: '/clock', label: 'World Clock' },
+  { href: '/countdown', label: 'Countdown' },
+  { href: '/stopwatch', label: 'Stopwatch' },
+  { href: '/pomodoro', label: 'Pomodoro' },
+];
+---
+
+<nav class="sticky top-0 z-50 bg-canvas/80 backdrop-blur-md border-b border-hairline">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+    <a href="/" class="flex items-center gap-2 no-underline hover:opacity-80 transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink/40 focus-visible:ring-offset-2 rounded-sm touch-manipulation">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-ink" aria-hidden="true">
+        <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+      </svg>
+      <span class="font-semibold text-sm tracking-tight text-ink">Online Timer</span>
+    </a>
+    <div class="hidden sm:flex items-center gap-1">
+      {links.map(link => (
+        <a
+          href={link.href}
+          class={`
+            px-3 py-1.5 rounded-full text-sm transition-colors duration-150 no-underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink/40 focus-visible:ring-offset-2 touch-manipulation
+            ${currentPath === link.href
+              ? 'bg-ink text-on-primary font-medium'
+              : 'text-body hover:text-ink hover:bg-canvas-soft-2'
+            }
+          `}
+        >
+          {link.label}
+        </a>
+      ))}
+    </div>
+    <button id="mobile-menu-btn" class="sm:hidden p-3 rounded-full hover:bg-canvas-soft-2 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink/40 focus-visible:ring-offset-2 cursor-pointer touch-manipulation min-w-[44px] min-h-[44px] flex items-center justify-center" aria-label="Toggle menu">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+        <line x1="3" y1="6" x2="21" y2="6"/>
+        <line x1="3" y1="12" x2="21" y2="12"/>
+        <line x1="3" y1="18" x2="21" y2="18"/>
+      </svg>
+    </button>
+  </div>
+  <div id="mobile-menu" class="sm:hidden hidden border-t border-hairline bg-canvas">
+    <div class="flex flex-col px-4 py-2 gap-0.5">
+      {links.map(link => (
+        <a
+          href={link.href}
+          class={`
+            px-4 py-3.5 rounded-lg text-base transition-colors no-underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink/40 min-h-[48px] flex items-center
+            ${currentPath === link.href
+              ? 'bg-ink text-on-primary font-medium'
+              : 'text-body hover:text-ink hover:bg-canvas-soft-2'
+            }
+          `}
+        >
+          {link.label}
+        </a>
+      ))}
+    </div>
+  </div>
+</nav>
+
+<script>
+  const btn = document.getElementById('mobile-menu-btn');
+  const menu = document.getElementById('mobile-menu');
+  if (btn && menu) {
+    btn.addEventListener('click', () => {
+      menu.classList.toggle('hidden');
+    });
+  }
+</script>

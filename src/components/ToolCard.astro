@@ -1,0 +1,22 @@
+---
+export interface Props {
+  href: string;
+  title: string;
+  description: string;
+  gradient: string;
+  icon: string;
+}
+
+const { href, title, description, gradient, icon } = Astro.props;
+---
+
+<a
+  href={href}
+  class="group block bg-canvas rounded-lg p-6 no-underline border border-hairline transition-transform duration-200 hover:shadow-elevated hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink/40 focus-visible:ring-offset-2 touch-manipulation"
+>
+  <div class="w-10 h-10 rounded-lg flex items-center justify-center mb-4 text-on-primary text-lg" style={`background: ${gradient}`}>
+    <span class="font-semibold" aria-hidden="true">{icon}</span>
+  </div>
+  <h3 class="text-base font-semibold text-ink mb-1.5 tracking-tight">{title}</h3>
+  <p class="text-sm text-body leading-relaxed">{description}</p>
+</a>

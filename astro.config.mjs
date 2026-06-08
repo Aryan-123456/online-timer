@@ -7,6 +7,6 @@ export default defineConfig({
   vite: {
     plugins: [tailwindcss()],
   },
-  site: 'https://onlinetimer.in',
+  site: 'https://onlinetimer.online',
   integrations: [sitemap()],
 });

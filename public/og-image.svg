@@ -6,5 +6,5 @@
   <circle cx="600" cy="280" r="8" fill="#ededed"/>
   <text x="600" y="490" text-anchor="middle" font-family="Inter, sans-serif" font-size="48" font-weight="700" fill="#ededed">Online Timer</text>
   <text x="600" y="540" text-anchor="middle" font-family="Inter, sans-serif" font-size="24" font-weight="400" fill="#a1a1a1">Countdown · Stopwatch · Pomodoro · World Clock</text>
-  <text x="600" y="580" text-anchor="middle" font-family="Inter, sans-serif" font-size="18" font-weight="400" fill="#666">onlinetimer.in</text>
+  <text x="600" y="580" text-anchor="middle" font-family="Inter, sans-serif" font-size="18" font-weight="400" fill="#666">onlinetimer.online</text>
 </svg>

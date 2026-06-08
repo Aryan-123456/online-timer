@@ -1,0 +1,72 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Privacy Policy — Online Timer",
+  "description": "Privacy policy for Online Timer. Learn how we collect, use, and protect your data.",
+  "url": "https://onlinetimer.in/privacy",
+  "about": {
+    "@type": "Thing",
+    "name": "Privacy Policy"
+  },
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": "Online Timer",
+    "url": "https://onlinetimer.in/"
+  }
+};
+---
+
+<Layout title="Privacy Policy — Online Timer" description="Read the Online Timer privacy policy. Learn how we protect your data — no tracking, no cookies, no data collection. Your privacy matters to us." canonical="https://onlinetimer.in/privacy" keywords="privacy policy, online timer privacy, data protection, no tracking, privacy-first timer">
+  <Nav currentPath="/privacy" />
+
+  <main class="max-w-3xl mx-auto px-5 sm:px-6 pb-16 sm:pb-24">
+    <div class="text-center mb-8 sm:mb-10">
+      <h1 class="text-[clamp(1.35rem,5vw,2.5rem)] font-semibold leading-tight tracking-[-0.8px] sm:tracking-[-1.28px] text-ink mb-2 sm:mb-3">Privacy Policy</h1>
+      <p class="text-body text-sm sm:text-base">Last updated: June 2026</p>
+    </div>
+
+    <article class="bg-canvas rounded-xl border border-hairline p-6 sm:p-10">
+      <section>
+        <h2 class="text-xl sm:text-2xl font-semibold text-ink mb-4">1. Information We Collect</h2>
+        <p class="text-body text-sm sm:text-base leading-relaxed mb-4">Online Timer is a privacy-first tool. We do not collect, store, or share any personal information. All timer data is processed entirely in your browser and is never sent to our servers.</p>
+        <p class="text-body text-sm sm:text-base leading-relaxed mb-4">We do not use cookies for tracking or advertising purposes. Any data stored locally (such as timer preferences) is saved in your browser's local storage and never transmitted externally.</p>
+      </section>
+
+      <section>
+        <h2 class="text-xl sm:text-2xl font-semibold text-ink mb-4 mt-8">2. How We Use Information</h2>
+        <p class="text-body text-sm sm:text-base leading-relaxed mb-4">Since we collect no personal data, there is nothing to use. All application logic runs client-side in your browser. No data is stored on or transmitted to our infrastructure.</p>
+      </section>
+
+      <section>
+        <h2 class="text-xl sm:text-2xl font-semibold text-ink mb-4 mt-8">3. Third-Party Services</h2>
+        <p class="text-body text-sm sm:text-base leading-relaxed mb-4">We use no third-party analytics, tracking scripts, or advertising networks. The only external resources loaded are Google Fonts (Inter and JetBrains Mono) for typography.</p>
+      </section>
+
+      <section>
+        <h2 class="text-xl sm:text-2xl font-semibold text-ink mb-4 mt-8">4. Data Security</h2>
+        <p class="text-body text-sm sm:text-base leading-relaxed mb-4">Your data never leaves your device. All timer operations — countdown, stopwatch, pomodoro, and world clock — run locally in your browser with no network requests.</p>
+      </section>
+
+      <section>
+        <h2 class="text-xl sm:text-2xl font-semibold text-ink mb-4 mt-8">5. Changes to This Policy</h2>
+        <p class="text-body text-sm sm:text-base leading-relaxed mb-4">If this privacy policy changes, we will update the "Last updated" date at the top of this page. Continued use of the site after changes constitutes acceptance of the updated policy.</p>
+      </section>
+
+      <section>
+        <h2 class="text-xl sm:text-2xl font-semibold text-ink mb-4 mt-8">6. Contact</h2>
+        <p class="text-body text-sm sm:text-base leading-relaxed">If you have questions about this privacy policy, please <a href="/contact" class="text-link underline hover:no-underline">contact us</a>.</p>
+      </section>
+    </article>
+  </main>
+
+  <Footer />
+</Layout>
+
+<script is:inline>
+  document.head.insertAdjacentHTML('beforeend', `<script type="application/ld+json">${JSON.stringify(structuredData)}<\/script>`);
+</script>

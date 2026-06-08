@@ -2,11 +2,18 @@
 
 const year = new Date().getFullYear();
 
-const links = [
+const tools = [
   { href: '/clock', label: 'World Clock' },
   { href: '/countdown', label: 'Countdown Timer' },
-  { href: '/stopwatch', label: 'Stopwatch' },
-  { href: '/pomodoro', label: 'Pomodoro' },
+  { href: '/stopwatch', label: 'Online Stopwatch' },
+  { href: '/pomodoro', label: 'Pomodoro Timer' },
+];
+
+const info = [
+  { href: '/about', label: 'About Us' },
+  { href: '/contact', label: 'Contact Us' },
+  { href: '/privacy', label: 'Privacy Policy' },
+  { href: '/terms', label: 'Terms & Conditions' },
 ];
 ---
 
@@ -27,13 +34,13 @@ const links = [
       </div>
       <div>
         <p class="text-xs font-medium text-mute uppercase tracking-wider mb-3 font-mono">Tools</p>
-        {links.slice(0, 2).map(link => (
+        {tools.map(link => (
           <a href={link.href} class="block text-sm text-body hover:text-ink transition-colors no-underline py-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink/40 rounded-sm touch-manipulation">{link.label}</a>
         ))}
       </div>
       <div>
-        <p class="text-xs font-medium text-mute uppercase tracking-wider mb-3 font-mono">More</p>
-        {links.slice(2).map(link => (
+        <p class="text-xs font-medium text-mute uppercase tracking-wider mb-3 font-mono">Info</p>
+        {info.map(link => (
           <a href={link.href} class="block text-sm text-body hover:text-ink transition-colors no-underline py-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink/40 rounded-sm touch-manipulation">{link.label}</a>
         ))}
       </div>

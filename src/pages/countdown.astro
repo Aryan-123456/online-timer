@@ -2,18 +2,19 @@
 import Layout from '../layouts/Layout.astro';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
+import FAQ from '../components/FAQ.astro';
 ---
 
-<Layout title="Countdown Timer — Online Timer" description="Set precise countdowns and share them with anyone via a unique link.">
+<Layout title="Countdown Timer — Online Timer" description="Free online countdown timer. Use as a classroom timer, 1 hour timer, 10 minute timer, 5 minute timer, or 30 minute timer. Share your countdown with a link." canonical="https://onlinetimer.in/countdown" keywords="countdown timer, online timer, classroom timer, 1 hour timer, online timer 10 minutes, online timer 5 minutes, online timer 30 minutes, timer">
   <Nav currentPath="/countdown" />
 
   <main class="max-w-2xl mx-auto px-5 sm:px-6 py-8 sm:py-12">
     <div class="text-center mb-8 sm:mb-10">
       <h1 class="text-[clamp(1.35rem,5vw,2.5rem)] font-semibold leading-tight tracking-[-0.8px] sm:tracking-[-1.28px] text-ink mb-2 sm:mb-3">
-        Countdown Timer
+        Countdown Timer — Free Online Countdown
       </h1>
       <p class="text-body text-sm sm:text-base max-w-lg mx-auto">
-        Tap the timer to set a time.
+        Set a <strong>1 hour timer</strong>, <strong>online timer 10 minutes</strong>, <strong>online timer 5 minutes</strong>, or <strong>online timer 30 minutes</strong>. Tap the display to choose any duration.
       </p>
     </div>
 
@@ -38,6 +39,17 @@ import Footer from '../components/Footer.astro';
       <p id="share-url" class="hidden mt-4 text-sm text-body font-mono break-all"></p>
     </div>
   </main>
+
+  <section class="max-w-4xl mx-auto px-5 sm:px-6 pb-8 sm:pb-12 text-center">
+    <p class="text-mute text-xs font-mono uppercase tracking-wider mb-3">More Tools</p>
+    <div class="flex flex-wrap justify-center gap-2 sm:gap-3">
+      <a href="/stopwatch" class="px-4 py-2 rounded-full border border-hairline bg-canvas text-ink text-sm font-medium no-underline hover:bg-ink hover:text-on-primary hover:border-ink transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink/40">Stopwatch</a>
+      <a href="/pomodoro" class="px-4 py-2 rounded-full border border-hairline bg-canvas text-ink text-sm font-medium no-underline hover:bg-ink hover:text-on-primary hover:border-ink transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink/40">Pomodoro Timer</a>
+      <a href="/clock" class="px-4 py-2 rounded-full border border-hairline bg-canvas text-ink text-sm font-medium no-underline hover:bg-ink hover:text-on-primary hover:border-ink transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink/40">World Clock</a>
+    </div>
+  </section>
+
+  <FAQ />
 
   <Footer />
 </Layout>

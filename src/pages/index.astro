@@ -1,13 +1,125 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import FAQ from '../components/FAQ.astro';
 ---
 
-<Layout title="Countdown Timer — Online Timer">
-  <main class="min-h-screen flex items-center justify-center bg-canvas-soft">
-    <p class="text-body text-sm font-mono">Redirecting to Countdown Timer...</p>
+<Layout
+  title="Online Timer — Free Online Countdown, Stopwatch, Pomodoro & World Clock"
+  description="Free online timer with countdown, stopwatch, pomodoro and world clock tools. Use as a classroom timer, 1 hour timer, 10 minute timer, 5 minute timer, 30 minute timer and more. No ads, no clutter."
+  canonical="https://onlinetimer.in/"
+>
+  <Nav currentPath="/" />
+
+  <main>
+    <section class="max-w-2xl mx-auto px-5 sm:px-6 py-8 sm:py-12">
+      <div class="text-center mb-6 sm:mb-8">
+        <h1 class="text-[clamp(1.35rem,5vw,2.5rem)] font-semibold leading-tight tracking-[-0.8px] sm:tracking-[-1.28px] text-ink mb-2 sm:mb-3">
+          Online Timer — Free Countdown Timer
+        </h1>
+        <p class="text-body text-sm sm:text-base max-w-lg mx-auto">
+          Set a <strong>1 hour timer</strong>, <strong>online timer 10 minutes</strong>, <strong>online timer 5 minutes</strong>, or <strong>online timer 30 minutes</strong>. Tap the display to choose any duration.
+        </p>
+      </div>
+
+      <div class="p-6 sm:p-10 text-center">
+        <div class="relative inline-flex items-center justify-center mb-6">
+          <svg class="w-56 h-56 sm:w-72 sm:h-72 md:w-80 md:h-80 lg:w-[28rem] lg:h-[28rem] xl:w-[32rem] xl:h-[32rem] -rotate-90" viewBox="0 0 100 100">
+            <circle cx="50" cy="50" r="45" fill="none" stroke="var(--color-hairline)" stroke-width="6" />
+            <circle id="countdown-progress" cx="50" cy="50" r="45" fill="none" stroke="var(--color-ink)" stroke-width="6" stroke-linecap="round"
+              stroke-dasharray="283" stroke-dashoffset="283" class="transition-[stroke-dashoffset] duration-100 ease-linear" />
+          </svg>
+          <p id="countdown-display" class="absolute inset-0 flex items-center justify-center text-[clamp(2rem,5vw,6rem)] font-semibold font-mono text-ink tracking-tight leading-none cursor-pointer select-none">00:00:00</p>
+        </div>
+
+        <div class="flex items-center justify-center gap-3 flex-wrap">
+          <button id="countdown-start" class="grow sm:grow-0 shrink-0 whitespace-nowrap px-5 sm:px-6 py-3.5 sm:py-2.5 rounded-pill bg-ink text-on-primary text-base sm:text-sm font-medium cursor-pointer hover:opacity-90 transition-opacity border-none touch-manipulation focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink/40 focus-visible:ring-offset-2 min-h-[48px]">Start</button>
+          <button id="countdown-reset" class="grow sm:grow-0 shrink-0 whitespace-nowrap px-5 sm:px-6 py-3.5 sm:py-2.5 rounded-pill bg-canvas text-ink text-base sm:text-sm font-medium cursor-pointer border border-hairline hover:bg-canvas-soft-2 transition-colors touch-manipulation focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink/40 min-h-[48px]">Reset</button>
+          <button id="countdown-share" class="grow sm:grow-0 shrink-0 whitespace-nowrap px-5 sm:px-6 py-3.5 sm:py-2.5 rounded-pill bg-canvas text-ink text-base sm:text-sm font-medium cursor-pointer border border-hairline hover:bg-canvas-soft-2 transition-colors touch-manipulation focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink/40 min-h-[48px]">Share</button>
+          <button id="countdown-fullscreen" class="grow sm:grow-0 shrink-0 whitespace-nowrap px-4 py-3.5 sm:py-2.5 rounded-pill bg-canvas text-ink text-sm font-medium cursor-pointer border border-hairline hover:bg-canvas-soft-2 transition-colors touch-manipulation focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink/40 min-h-[48px] flex items-center justify-center" aria-label="Enter fullscreen">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3"/><path d="M21 8V5a2 2 0 0 0-2-2h-3"/><path d="M16 21h3a2 2 0 0 0 2-2v-3"/><path d="M3 16v3a2 2 0 0 0 2 2h3"/></svg>
+          </button>
+        </div>
+        <p id="share-url" class="hidden mt-4 text-sm text-body font-mono break-all"></p>
+      </div>
+    </section>
+
+    <section class="max-w-4xl mx-auto px-5 sm:px-6 pb-8 sm:pb-12 text-center">
+      <p class="text-mute text-xs font-mono uppercase tracking-wider mb-3">More Tools</p>
+      <div class="flex flex-wrap justify-center gap-2 sm:gap-3">
+        <a href="/stopwatch" class="px-4 py-2 rounded-full border border-hairline bg-canvas text-ink text-sm font-medium no-underline hover:bg-ink hover:text-on-primary hover:border-ink transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink/40">Stopwatch</a>
+        <a href="/pomodoro" class="px-4 py-2 rounded-full border border-hairline bg-canvas text-ink text-sm font-medium no-underline hover:bg-ink hover:text-on-primary hover:border-ink transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink/40">Pomodoro Timer</a>
+        <a href="/clock" class="px-4 py-2 rounded-full border border-hairline bg-canvas text-ink text-sm font-medium no-underline hover:bg-ink hover:text-on-primary hover:border-ink transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink/40">World Clock</a>
+      </div>
+    </section>
+
+    <section class="max-w-3xl mx-auto px-5 sm:px-6 pb-16 sm:pb-24">
+      <div class="bg-canvas rounded-xl border border-hairline p-6 sm:p-10">
+
+        <h2 class="text-xl sm:text-2xl font-semibold text-ink mb-4">What Is an Online Timer?</h2>
+        <p class="text-body text-sm sm:text-base leading-relaxed mb-4">
+          An <strong>online timer</strong> is a web-based tool that helps you measure and manage time directly from your browser. Unlike traditional stopwatches or kitchen timers, an <strong>online timer</strong> requires no downloads or installations. It runs entirely in your browser, making it accessible from any device — desktop, tablet, or phone. Whether you need a <strong>classroom timer</strong> for teaching, a <strong>1 hour timer</strong> for cooking, or a simple <strong>stopwatch</strong> for workouts, our platform has you covered.
+        </p>
+
+        <h2 class="text-xl sm:text-2xl font-semibold text-ink mb-4 mt-8">Countdown Timer</h2>
+        <p class="text-body text-sm sm:text-base leading-relaxed mb-4">
+          Our <a href="/countdown" class="text-link underline hover:no-underline">countdown timer</a> is one of the most versatile tools available. You can set it for any duration by tapping the display and entering hours, minutes, and seconds. Need an <strong>online timer 10 minutes</strong> for a quick break? Tap, set, and start. Preparing for a presentation and need an <strong>online timer 5 minutes</strong> for your speaking slot? Done. Studying with the Pomodoro technique and want an <strong>online timer 30 minutes</strong> for deep focus? It takes just a few seconds to configure. The countdown includes a circular progress ring that visually shrinks as time elapses, giving you a clear sense of time remaining at a glance. You can also share your countdown with others via a unique link, making it perfect for remote teams or virtual classrooms.
+        </p>
+
+        <h2 class="text-xl sm:text-2xl font-semibold text-ink mb-4 mt-8">Stopwatch</h2>
+        <p class="text-body text-sm sm:text-base leading-relaxed mb-4">
+          A <strong>stopwatch</strong> (also spelled <strong>stop watch</strong>) is essential for timing events, races, experiments, or any activity where you need precise elapsed time measurement. Our <a href="/stopwatch" class="text-link underline hover:no-underline">online stopwatch</a> offers accuracy to 10 milliseconds and includes a lap recording feature. Whether you are a coach timing athletes, a scientist recording reaction times, or a fitness enthusiast tracking sets, this <strong>stopwatch</strong> delivers reliable performance. The lap feature lets you record split times without stopping the main timer, so you can analyze each segment of your activity in detail. It is the ideal <strong>stop watch</strong> for anyone who needs precision timing on demand.
+        </p>
+
+        <h2 class="text-xl sm:text-2xl font-semibold text-ink mb-4 mt-8">Pomodoro Timer</h2>
+        <p class="text-body text-sm sm:text-base leading-relaxed mb-4">
+          The <a href="/pomodoro" class="text-link underline hover:no-underline">pomodoro timer</a> implements the popular Pomodoro Technique, a time management method developed by Francesco Cirillo. Work in focused 25-minute intervals (called "pomodoros"), then take a short break. Our pomodoro timer is simple to use: just start the default 25-minute session and focus until the alarm sounds. It updates the page title with the remaining time so you can track progress even when the tab is in the background. This tool is ideal for students, writers, programmers, and anyone who struggles with distractions.
+        </p>
+
+        <h2 class="text-xl sm:text-2xl font-semibold text-ink mb-4 mt-8">World Clock</h2>
+        <p class="text-body text-sm sm:text-base leading-relaxed mb-4">
+          Our <a href="/clock" class="text-link underline hover:no-underline">world clock</a> displays the current time across 16 major cities worldwide, including London, New York, Tokyo, Dubai, and Sydney. Each card shows the city flag, current time in 24-hour format, date, and UTC offset. The display refreshes every second so you always see the live time. You can also tap any city to enter fullscreen mode. Whether you are scheduling international meetings or keeping track of family in different time zones, this <strong>clock</strong> makes it easy.
+        </p>
+
+        <h2 class="text-xl sm:text-2xl font-semibold text-ink mb-4 mt-8">Why Choose Our Online Timer?</h2>
+        <p class="text-body text-sm sm:text-base leading-relaxed mb-4">
+          There are countless <strong>online timer</strong> websites out there, but here is what sets our platform apart:
+        </p>
+        <ul class="text-body text-sm sm:text-base leading-relaxed space-y-2 list-disc pl-5 mb-4">
+          <li><strong>No ads:</strong> A clean, distraction-free interface. No pop-ups, no banners, no clutter.</li>
+          <li><strong>Fast and lightweight:</strong> Built with modern web technologies, our pages load instantly and run smoothly on any device.</li>
+          <li><strong>Fullscreen mode:</strong> Each tool supports fullscreen, making it perfect for classrooms, presentations, or gym use.</li>
+          <li><strong>Shareable links:</strong> Generate a unique URL for any countdown and share it with colleagues, students, or friends.</li>
+          <li><strong>All in one place:</strong> Instead of bookmarking separate sites for a <strong>timer</strong>, <strong>stopwatch</strong>, pomodoro, and <strong>clock</strong>, you get everything here on <strong>onlinetimer.in</strong>.</li>
+        </ul>
+
+        <h2 class="text-xl sm:text-2xl font-semibold text-ink mb-4 mt-8">Common Use Cases</h2>
+        <p class="text-body text-sm sm:text-base leading-relaxed mb-4">
+          Our <strong>online timer</strong> tools are incredibly versatile. Here are some common scenarios:
+        </p>
+        <ul class="text-body text-sm sm:text-base leading-relaxed space-y-2 list-disc pl-5 mb-4">
+          <li><strong>Classroom timer:</strong> Teachers can use the countdown to manage classroom activities, quizzes, and transitions. Set an <strong>online timer 10 minutes</strong> for a quick writing exercise, or a 5-minute timer for a warm-up.</li>
+          <li><strong>Workout timer:</strong> Use the <strong>stopwatch</strong> to time runs, circuits, or rest intervals between sets.</li>
+          <li><strong>Cooking:</strong> Need a <strong>1 hour timer</strong> for a roast or an <strong>online timer 30 minutes</strong> for baking? The countdown has you covered.</li>
+          <li><strong>Study sessions:</strong> Combine the pomodoro timer with the world clock to plan study sessions across time zones if you are learning with friends abroad.</li>
+          <li><strong>Presentations and speeches:</strong> Set a countdown with a visible progress ring to stay on track without checking your phone.</li>
+        </ul>
+
+        <h2 class="text-xl sm:text-2xl font-semibold text-ink mb-4 mt-8">Start Using the Online Timer Today</h2>
+        <p class="text-body text-sm sm:text-base leading-relaxed">
+          No registration, no downloads, no hidden costs. Just head over to the <a href="/countdown" class="text-link underline hover:no-underline">countdown timer</a>, <a href="/stopwatch" class="text-link underline hover:no-underline">stopwatch</a>, <a href="/pomodoro" class="text-link underline hover:no-underline">pomodoro timer</a>, or <a href="/clock" class="text-link underline hover:no-underline">world clock</a> and start managing your time more effectively. Whether you need a quick <strong>online timer 5 minutes</strong> or a full-featured <strong>stop watch</strong> with lap recording, onlinetimer.in is the only <strong>online timer</strong> you will ever need.
+        </p>
+      </div>
+    </section>
+
+    <FAQ />
   </main>
+
+  <Footer />
 </Layout>
 
 <script>
-  window.location.replace('/countdown');
+  import { initCountdown } from '../lib/countdown.js';
+  initCountdown();
 </script>

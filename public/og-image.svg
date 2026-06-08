@@ -1,0 +1,10 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="630" fill="#0a0a0a"/>
+  <circle cx="600" cy="280" r="160" fill="none" stroke="#2a2a2a" stroke-width="12"/>
+  <circle cx="600" cy="280" r="160" fill="none" stroke="#ededed" stroke-width="12" stroke-dasharray="1005" stroke-dashoffset="670" stroke-linecap="round" transform="rotate(-90 600 280)"/>
+  <line x1="600" y1="280" x2="600" y2="180" stroke="#ededed" stroke-width="8" stroke-linecap="round"/>
+  <circle cx="600" cy="280" r="8" fill="#ededed"/>
+  <text x="600" y="490" text-anchor="middle" font-family="Inter, sans-serif" font-size="48" font-weight="700" fill="#ededed">Online Timer</text>
+  <text x="600" y="540" text-anchor="middle" font-family="Inter, sans-serif" font-size="24" font-weight="400" fill="#a1a1a1">Countdown · Stopwatch · Pomodoro · World Clock</text>
+  <text x="600" y="580" text-anchor="middle" font-family="Inter, sans-serif" font-size="18" font-weight="400" fill="#666">onlinetimer.in</text>
+</svg>

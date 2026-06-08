@@ -1,0 +1,70 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "AboutPage",
+  "name": "About Us — Online Timer",
+  "description": "About Online Timer — a clean, fast, and minimal online timer toolkit. Free to use with no ads and no clutter.",
+  "url": "https://onlinetimer.in/about",
+  "mainEntity": {
+    "@type": "WebSite",
+    "name": "Online Timer",
+    "url": "https://onlinetimer.in/",
+    "description": "Free online countdown timer, stopwatch, pomodoro timer and world clock. No ads, no clutter, no tracking."
+  }
+};
+---
+
+<Layout title="About Us — Online Timer" description="Learn about Online Timer — a clean, fast, and minimal online timer toolkit. Free countdown timer, stopwatch, pomodoro timer, and world clock. No ads, no clutter, no tracking." canonical="https://onlinetimer.in/about" keywords="about online timer, free online timer, countdown timer, stopwatch, pomodoro timer, world clock, online timer toolkit">
+  <Nav currentPath="/about" />
+
+  <main class="max-w-3xl mx-auto px-5 sm:px-6 pb-16 sm:pb-24">
+    <div class="text-center mb-8 sm:mb-10">
+      <h1 class="text-[clamp(1.35rem,5vw,2.5rem)] font-semibold leading-tight tracking-[-0.8px] sm:tracking-[-1.28px] text-ink mb-2 sm:mb-3">About Us</h1>
+      <p class="text-body text-sm sm:text-base max-w-lg mx-auto">
+        Online Timer is a clean, fast, and minimal online timer toolkit. We provide a set of essential timing tools — <a href="/countdown" class="text-link underline hover:no-underline">countdown timer</a>, <a href="/stopwatch" class="text-link underline hover:no-underline">stopwatch</a>, <a href="/pomodoro" class="text-link underline hover:no-underline">pomodoro timer</a>, and <a href="/clock" class="text-link underline hover:no-underline">world clock</a> — all in one place.
+      </p>
+    </div>
+
+    <article class="bg-canvas rounded-xl border border-hairline p-6 sm:p-10">
+      <section>
+        <h2 class="text-xl sm:text-2xl font-semibold text-ink mb-4">Our Mission</h2>
+        <p class="text-body text-sm sm:text-base leading-relaxed mb-4">
+          Provide reliable, no-nonsense timing tools that work instantly in your browser. No ads, no clutter, no sign-ups. Every tool runs entirely on your device — your data never leaves your computer.
+        </p>
+      </section>
+
+      <section>
+        <h2 class="text-xl sm:text-2xl font-semibold text-ink mb-4 mt-8">Who It's For</h2>
+        <p class="text-body text-sm sm:text-base leading-relaxed mb-4">
+          Whether you're a teacher timing classroom activities, a student managing study sessions with the pomodoro technique, a professional tracking tasks, or just someone who needs an online timer — we've got you covered.
+        </p>
+      </section>
+
+      <section>
+        <h2 class="text-xl sm:text-2xl font-semibold text-ink mb-4 mt-8">What We Offer</h2>
+        <ul class="text-body text-sm sm:text-base leading-relaxed space-y-2 list-disc pl-5 mb-4">
+          <li><strong class="text-ink">Countdown Timer</strong> — Set precise countdowns with a shareable URL and fullscreen mode. Perfect for presentations, workouts, and classroom use.</li>
+          <li><strong class="text-ink">Online Stopwatch</strong> — Accurate stopwatch with lap recording. Ideal for sports, experiments, and productivity tracking.</li>
+          <li><strong class="text-ink">Pomodoro Timer</strong> — Boost your productivity with customizable work sessions and break intervals.</li>
+          <li><strong class="text-ink">World Clock</strong> — View current time across multiple cities worldwide, plus your local time.</li>
+        </ul>
+      </section>
+
+      <section>
+        <p class="text-body text-sm sm:text-base leading-relaxed text-ink font-medium bg-canvas-soft rounded-lg p-4 sm:p-5">
+          Built with privacy and performance in mind. No tracking, no data collection, no unnecessary bloat. Just tools that work.
+        </p>
+      </section>
+    </article>
+  </main>
+
+  <Footer />
+</Layout>
+
+<script is:inline>
+  document.head.insertAdjacentHTML('beforeend', `<script type="application/ld+json">${JSON.stringify(structuredData)}<\/script>`);
+</script>

@@ -1,0 +1,71 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Terms & Conditions — Online Timer",
+  "description": "Terms and conditions for using Online Timer. Read about acceptable use, disclaimers, and your rights.",
+  "url": "https://onlinetimer.in/terms",
+  "about": {
+    "@type": "Thing",
+    "name": "Terms & Conditions"
+  },
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": "Online Timer",
+    "url": "https://onlinetimer.in/"
+  }
+};
+---
+
+<Layout title="Terms & Conditions — Online Timer" description="Read the terms and conditions for using Online Timer. Free online timer tools with no registration required. Understand your rights and our disclaimers." canonical="https://onlinetimer.in/terms" keywords="terms and conditions, online timer terms, acceptable use, disclaimer, online timer">
+  <Nav currentPath="/terms" />
+
+  <main class="max-w-3xl mx-auto px-5 sm:px-6 pb-16 sm:pb-24">
+    <div class="text-center mb-8 sm:mb-10">
+      <h1 class="text-[clamp(1.35rem,5vw,2.5rem)] font-semibold leading-tight tracking-[-0.8px] sm:tracking-[-1.28px] text-ink mb-2 sm:mb-3">Terms & Conditions</h1>
+      <p class="text-body text-sm sm:text-base">Last updated: June 2026</p>
+    </div>
+
+    <article class="bg-canvas rounded-xl border border-hairline p-6 sm:p-10">
+      <section>
+        <h2 class="text-xl sm:text-2xl font-semibold text-ink mb-4">1. Acceptance of Terms</h2>
+        <p class="text-body text-sm sm:text-base leading-relaxed mb-4">By accessing and using Online Timer, you agree to be bound by these terms and conditions. If you do not agree, please do not use our service.</p>
+      </section>
+
+      <section>
+        <h2 class="text-xl sm:text-2xl font-semibold text-ink mb-4 mt-8">2. Use of Service</h2>
+        <p class="text-body text-sm sm:text-base leading-relaxed mb-4">Online Timer is provided free of charge as a convenience tool. You may use it for any lawful purpose, including personal, educational, and commercial use. You agree not to misuse the service or attempt to disrupt its functionality.</p>
+      </section>
+
+      <section>
+        <h2 class="text-xl sm:text-2xl font-semibold text-ink mb-4 mt-8">3. Intellectual Property</h2>
+        <p class="text-body text-sm sm:text-base leading-relaxed mb-4">The design, layout, and code of Online Timer are our intellectual property. You may not reproduce, distribute, or create derivative works without permission, except for personal use.</p>
+      </section>
+
+      <section>
+        <h2 class="text-xl sm:text-2xl font-semibold text-ink mb-4 mt-8">4. Disclaimer</h2>
+        <p class="text-body text-sm sm:text-base leading-relaxed mb-4">Online Timer is provided "as is" without any warranty. We make no guarantees about accuracy, reliability, or availability. Use at your own risk. We are not liable for any damages arising from the use of this service.</p>
+      </section>
+
+      <section>
+        <h2 class="text-xl sm:text-2xl font-semibold text-ink mb-4 mt-8">5. Changes</h2>
+        <p class="text-body text-sm sm:text-base leading-relaxed mb-4">We reserve the right to update these terms at any time. Changes are effective immediately upon posting. Your continued use constitutes acceptance of the updated terms.</p>
+      </section>
+
+      <section>
+        <h2 class="text-xl sm:text-2xl font-semibold text-ink mb-4 mt-8">6. Contact</h2>
+        <p class="text-body text-sm sm:text-base leading-relaxed">For questions about these terms, please <a href="/contact" class="text-link underline hover:no-underline">contact us</a>.</p>
+      </section>
+    </article>
+  </main>
+
+  <Footer />
+</Layout>
+
+<script is:inline>
+  document.head.insertAdjacentHTML('beforeend', `<script type="application/ld+json">${JSON.stringify(structuredData)}<\/script>`);
+</script>

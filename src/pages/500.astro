@@ -1,0 +1,34 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout title="500 — Server Error | Online Timer" canonical="https://onlinetimer.in/500">
+  <Nav currentPath="" />
+
+  <main class="flex-1 flex items-center justify-center px-5">
+    <div class="text-center max-w-sm">
+      <p class="text-[clamp(4rem,12vw,8rem)] font-bold font-mono leading-none text-mute select-none">500</p>
+      <h1 class="text-2xl sm:text-3xl font-semibold text-ink mt-4 mb-2">Server Error</h1>
+      <p class="text-body text-base sm:text-lg mb-8">Something went wrong on our end. Please try again later.</p>
+      <a
+        href="/"
+        class="inline-flex items-center gap-2 px-5 py-3 rounded-pill bg-ink text-on-primary text-sm font-medium no-underline hover:opacity-90 transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink/40 focus-visible:ring-offset-2"
+      >
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><polyline points="12 19 5 12 12 5"/></svg>
+        Go Home
+      </a>
+    </div>
+  </main>
+
+  <Footer />
+</Layout>
+
+<style>
+  :global(body) {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+</style>

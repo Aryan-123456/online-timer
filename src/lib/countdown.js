@@ -37,17 +37,25 @@ export function initCountdown() {
   function updateDisplay() {
     const text = formatTime(remainingMs);
     if (display) display.textContent = text;
-    if (progressRing && initialMs > 0) {
-      const pct = (remainingMs / initialMs) * 283;
-      progressRing.style.strokeDashoffset = String(pct);
+    if (progressRing) {
+      if (initialMs > 0) {
+        const pct = (remainingMs / initialMs) * 283;
+        progressRing.style.strokeDashoffset = String(pct);
+      } else {
+        progressRing.style.strokeDashoffset = '283';
+      }
     }
     if (fsContentEl) {
       const fsTime = fsContentEl.querySelector('.fs-time');
       if (fsTime) fsTime.textContent = text;
       const fsRing = fsContentEl.querySelector('.fs-progress');
-      if (fsRing && initialMs > 0) {
-        const pct = (remainingMs / initialMs) * 283;
-        fsRing.style.strokeDashoffset = String(pct);
+      if (fsRing) {
+        if (initialMs > 0) {
+          const pct = (remainingMs / initialMs) * 283;
+          fsRing.style.strokeDashoffset = String(pct);
+        } else {
+          fsRing.style.strokeDashoffset = '283';
+        }
       }
     }
   }
@@ -59,7 +67,7 @@ export function initCountdown() {
       clearInterval(interval);
       interval = null;
       isRunning = false;
-      if (display) display.parentElement.classList.add('text-error');
+      if (display) display.classList.add('text-error');
       if (startBtn) startBtn.textContent = 'Finished!';
       if (fsContentEl) {
         const fsStart = fsContentEl.querySelector('.fs-start');
@@ -76,7 +84,7 @@ export function initCountdown() {
       const parts = display?.textContent?.split(':') || [];
       if (parts.length !== 3) return;
       const sec = parseInt(parts[0]) * 3600 + parseInt(parts[1]) * 60 + parseInt(parts[2]);
-      if (sec <= 0) return;
+      if (sec <= 0) { openDialog(); return; }
       setTimeFromMs(sec * 1000);
     }
     if (isRunning) {
@@ -93,8 +101,12 @@ export function initCountdown() {
     }
     isRunning = true;
     isPaused = false;
-    if (display) display.parentElement.classList.remove('text-error');
+    if (display) display.classList.remove('text-error');
     if (startBtn) startBtn.textContent = 'Pause';
+    if (fsContentEl) {
+      const fsStart = fsContentEl.querySelector('.fs-start');
+      if (fsStart) fsStart.textContent = 'Pause';
+    }
     interval = setInterval(tick, 100);
   }
 
@@ -106,8 +118,12 @@ export function initCountdown() {
     remainingMs = 0;
     initialMs = 0;
     if (display) display.textContent = '00:00:00';
-    if (display) display.parentElement.classList.remove('text-error');
+    if (display) display.classList.remove('text-error');
     if (startBtn) startBtn.textContent = 'Start';
+    if (fsContentEl) {
+      const fsStart = fsContentEl.querySelector('.fs-start');
+      if (fsStart) fsStart.textContent = 'Start';
+    }
     updateDisplay();
     if (shareUrl) shareUrl.classList.add('hidden');
   }
@@ -141,11 +157,12 @@ export function initCountdown() {
     fsContentEl = document.createElement('div');
     fsContentEl.style.cssText = 'display: flex; flex-direction: column; align-items: center; gap: 16px; width: 100%;';
 
+    const container = document.createElement('div');
+    container.style.cssText = 'position: relative; display: inline-flex; align-items: center; justify-content: center;';
+
     const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-    svg.setAttribute('width', '120');
-    svg.setAttribute('height', '120');
     svg.setAttribute('viewBox', '0 0 100 100');
-    svg.style.cssText = 'transform: rotate(-90deg);';
+    svg.style.cssText = 'transform: rotate(-90deg); width: clamp(200px, 60vmin, 500px); height: clamp(200px, 60vmin, 500px);';
     const bgCircle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
     bgCircle.setAttribute('cx', '50');
     bgCircle.setAttribute('cy', '50');
@@ -167,13 +184,16 @@ export function initCountdown() {
     fgCircle.classList.add('fs-progress');
     fgCircle.style.cssText = 'transition: stroke-dashoffset 0.1s linear;';
     svg.appendChild(fgCircle);
-    fsContentEl.appendChild(svg);
+    container.appendChild(svg);
 
     const time = document.createElement('div');
     time.className = 'fs-time';
     time.textContent = formatTime(remainingMs);
-    time.style.cssText = 'font-size: clamp(4rem, 18vw, 10rem); font-weight: 600; color: #ededed; font-family: "JetBrains Mono", monospace; letter-spacing: -0.03em; line-height: 1.1; margin-top: -24px;';
-    fsContentEl.appendChild(time);
+    time.style.cssText = 'position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: clamp(1.5rem, 5vw, 5rem); font-weight: 600; color: #ededed; font-family: "JetBrains Mono", monospace; letter-spacing: -0.03em; cursor: pointer; touch-action: manipulation; -webkit-tap-highlight-color: transparent; user-select: none;';
+    time.addEventListener('click', openDialog);
+    container.appendChild(time);
+
+    fsContentEl.appendChild(container);
 
     const controls = document.createElement('div');
     controls.style.cssText = 'display: flex; gap: 12px; margin-top: 8px; flex-wrap: wrap; justify-content: center;';
@@ -186,9 +206,13 @@ export function initCountdown() {
       background: #ededed; color: #171717;
       font-size: 16px; font-weight: 500; cursor: pointer;
       border: none; transition: opacity 0.15s;
+      touch-action: manipulation;
+      -webkit-tap-highlight-color: transparent;
     `;
-    fsStartBtn.addEventListener('mouseenter', () => { fsStartBtn.style.opacity = '0.9'; });
-    fsStartBtn.addEventListener('mouseleave', () => { fsStartBtn.style.opacity = '1'; });
+    if (window.matchMedia('(hover: hover)').matches) {
+      fsStartBtn.addEventListener('mouseenter', () => { fsStartBtn.style.opacity = '0.9'; });
+      fsStartBtn.addEventListener('mouseleave', () => { fsStartBtn.style.opacity = '1'; });
+    }
     fsStartBtn.addEventListener('click', handleFsStart);
     controls.appendChild(fsStartBtn);
 
@@ -199,9 +223,13 @@ export function initCountdown() {
       background: transparent; color: #a1a1a1;
       font-size: 16px; font-weight: 500; cursor: pointer;
       border: 1px solid #3a3a3a; transition: background 0.15s, color 0.15s;
+      touch-action: manipulation;
+      -webkit-tap-highlight-color: transparent;
     `;
-    fsResetBtn.addEventListener('mouseenter', () => { fsResetBtn.style.background = '#222'; fsResetBtn.style.color = '#ededed'; });
-    fsResetBtn.addEventListener('mouseleave', () => { fsResetBtn.style.background = 'transparent'; fsResetBtn.style.color = '#a1a1a1'; });
+    if (window.matchMedia('(hover: hover)').matches) {
+      fsResetBtn.addEventListener('mouseenter', () => { fsResetBtn.style.background = '#222'; fsResetBtn.style.color = '#ededed'; });
+      fsResetBtn.addEventListener('mouseleave', () => { fsResetBtn.style.background = 'transparent'; fsResetBtn.style.color = '#a1a1a1'; });
+    }
     fsResetBtn.addEventListener('click', handleFsReset);
     controls.appendChild(fsResetBtn);
 

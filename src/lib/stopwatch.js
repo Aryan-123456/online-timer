@@ -163,7 +163,8 @@ export function initStopwatch() {
     const time = document.createElement('div');
     time.className = 'fs-time';
     time.textContent = formatTime(ms);
-    time.style.cssText = 'font-size: clamp(4rem, 18vw, 10rem); font-weight: 600; color: #ededed; font-family: "JetBrains Mono", monospace; letter-spacing: -0.03em; line-height: 1.1;';
+    time.style.cssText = 'font-size: clamp(4rem, 18vw, 10rem); font-weight: 600; color: #ededed; font-family: "JetBrains Mono", monospace; letter-spacing: -0.03em; line-height: 1.1; cursor: pointer; touch-action: manipulation;';
+    time.addEventListener('click', openDialog);
     fsContentEl.appendChild(time);
 
     const controls = document.createElement('div');
@@ -177,9 +178,13 @@ export function initStopwatch() {
       background: #ededed; color: #171717;
       font-size: 16px; font-weight: 500; cursor: pointer;
       border: none; transition: opacity 0.15s;
+      touch-action: manipulation;
+      -webkit-tap-highlight-color: transparent;
     `;
-    fsToggleBtn.addEventListener('mouseenter', () => { fsToggleBtn.style.opacity = '0.9'; });
-    fsToggleBtn.addEventListener('mouseleave', () => { fsToggleBtn.style.opacity = '1'; });
+    if (window.matchMedia('(hover: hover)').matches) {
+      fsToggleBtn.addEventListener('mouseenter', () => { fsToggleBtn.style.opacity = '0.9'; });
+      fsToggleBtn.addEventListener('mouseleave', () => { fsToggleBtn.style.opacity = '1'; });
+    }
     fsToggleBtn.addEventListener('click', handleFsToggle);
     controls.appendChild(fsToggleBtn);
 
@@ -190,9 +195,13 @@ export function initStopwatch() {
       background: transparent; color: #a1a1a1;
       font-size: 16px; font-weight: 500; cursor: pointer;
       border: 1px solid #3a3a3a; transition: background 0.15s, color 0.15s;
+      touch-action: manipulation;
+      -webkit-tap-highlight-color: transparent;
     `;
-    fsLapBtn.addEventListener('mouseenter', () => { fsLapBtn.style.background = '#222'; fsLapBtn.style.color = '#ededed'; });
-    fsLapBtn.addEventListener('mouseleave', () => { fsLapBtn.style.background = 'transparent'; fsLapBtn.style.color = '#a1a1a1'; });
+    if (window.matchMedia('(hover: hover)').matches) {
+      fsLapBtn.addEventListener('mouseenter', () => { fsLapBtn.style.background = '#222'; fsLapBtn.style.color = '#ededed'; });
+      fsLapBtn.addEventListener('mouseleave', () => { fsLapBtn.style.background = 'transparent'; fsLapBtn.style.color = '#a1a1a1'; });
+    }
     fsLapBtn.addEventListener('click', lap);
     controls.appendChild(fsLapBtn);
 
@@ -203,9 +212,13 @@ export function initStopwatch() {
       background: transparent; color: #a1a1a1;
       font-size: 16px; font-weight: 500; cursor: pointer;
       border: 1px solid #3a3a3a; transition: background 0.15s, color 0.15s;
+      touch-action: manipulation;
+      -webkit-tap-highlight-color: transparent;
     `;
-    fsResetBtn.addEventListener('mouseenter', () => { fsResetBtn.style.background = '#222'; fsResetBtn.style.color = '#ededed'; });
-    fsResetBtn.addEventListener('mouseleave', () => { fsResetBtn.style.background = 'transparent'; fsResetBtn.style.color = '#a1a1a1'; });
+    if (window.matchMedia('(hover: hover)').matches) {
+      fsResetBtn.addEventListener('mouseenter', () => { fsResetBtn.style.background = '#222'; fsResetBtn.style.color = '#ededed'; });
+      fsResetBtn.addEventListener('mouseleave', () => { fsResetBtn.style.background = 'transparent'; fsResetBtn.style.color = '#a1a1a1'; });
+    }
     fsResetBtn.addEventListener('click', reset);
     controls.appendChild(fsResetBtn);
 

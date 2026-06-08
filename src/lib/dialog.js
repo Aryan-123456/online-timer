@@ -78,9 +78,13 @@ export function showTimerDialog({ title, fields, onConfirm }) {
     background: transparent; color: #a1a1a1; font-size: 15px;
     font-weight: 500; cursor: pointer; border: 1px solid #2a2a2a;
     transition: background 0.15s; font-family: Inter, sans-serif;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
   `;
-  cancelBtn.addEventListener('mouseenter', () => { cancelBtn.style.background = '#222'; });
-  cancelBtn.addEventListener('mouseleave', () => { cancelBtn.style.background = 'transparent'; });
+  if (window.matchMedia('(hover: hover)').matches) {
+    cancelBtn.addEventListener('mouseenter', () => { cancelBtn.style.background = '#222'; });
+    cancelBtn.addEventListener('mouseleave', () => { cancelBtn.style.background = 'transparent'; });
+  }
   cancelBtn.addEventListener('click', close);
   btnRow.appendChild(cancelBtn);
 
@@ -91,9 +95,13 @@ export function showTimerDialog({ title, fields, onConfirm }) {
     background: #ededed; color: #171717; font-size: 15px;
     font-weight: 500; cursor: pointer; border: none;
     transition: opacity 0.15s; font-family: Inter, sans-serif;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
   `;
-  setBtn.addEventListener('mouseenter', () => { setBtn.style.opacity = '0.9'; });
-  setBtn.addEventListener('mouseleave', () => { setBtn.style.opacity = '1'; });
+  if (window.matchMedia('(hover: hover)').matches) {
+    setBtn.addEventListener('mouseenter', () => { setBtn.style.opacity = '0.9'; });
+    setBtn.addEventListener('mouseleave', () => { setBtn.style.opacity = '1'; });
+  }
   setBtn.addEventListener('click', confirm);
   btnRow.appendChild(setBtn);
 
@@ -104,16 +112,16 @@ export function showTimerDialog({ title, fields, onConfirm }) {
   });
 
   function onKey(e) {
-    if (e.key === 'Escape') close();
+    if (e.key === 'Escape') { e.stopPropagation(); close(); }
     if (e.key === 'Enter') {
       e.preventDefault();
       confirm();
     }
   }
-  document.addEventListener('keydown', onKey);
+  document.addEventListener('keydown', onKey, true);
 
   function close() {
-    document.removeEventListener('keydown', onKey);
+    document.removeEventListener('keydown', onKey, true);
     overlay.remove();
   }
 
@@ -128,5 +136,6 @@ export function showTimerDialog({ title, fields, onConfirm }) {
     close();
   }
 
-  document.body.appendChild(overlay);
+  const fsOverlay = document.getElementById('timer-fullscreen-overlay');
+  (fsOverlay || document.body).appendChild(overlay);
 }

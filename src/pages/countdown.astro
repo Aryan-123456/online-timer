@@ -13,20 +13,19 @@ import Footer from '../components/Footer.astro';
         Countdown Timer
       </h1>
       <p class="text-body text-sm sm:text-base max-w-lg mx-auto">
-        Tap the timer to set a time. Share any countdown with <code class="bg-canvas-soft-2 px-1.5 py-0.5 rounded text-xs font-mono">?t=3600</code>.
+        Tap the timer to set a time.
       </p>
     </div>
 
-    <div class="bg-canvas rounded-lg border border-hairline p-6 sm:p-10 text-center">
-      <div class="mb-6">
-        <p id="countdown-display" class="text-[clamp(2.5rem,12vw,5rem)] font-semibold font-mono text-ink tracking-tight leading-none cursor-pointer">00:00:00</p>
+    <div class="p-6 sm:p-10 text-center">
+      <div class="relative inline-flex items-center justify-center mb-6">
+        <svg class="w-56 h-56 sm:w-72 sm:h-72 md:w-80 md:h-80 lg:w-[28rem] lg:h-[28rem] xl:w-[32rem] xl:h-[32rem] -rotate-90" viewBox="0 0 100 100">
+          <circle cx="50" cy="50" r="45" fill="none" stroke="var(--color-hairline)" stroke-width="6" />
+          <circle id="countdown-progress" cx="50" cy="50" r="45" fill="none" stroke="var(--color-ink)" stroke-width="6" stroke-linecap="round"
+            stroke-dasharray="283" stroke-dashoffset="283" class="transition-[stroke-dashoffset] duration-100 ease-linear" />
+        </svg>
+        <p id="countdown-display" class="absolute inset-0 flex items-center justify-center text-[clamp(2rem,5vw,6rem)] font-semibold font-mono text-ink tracking-tight leading-none cursor-pointer select-none">00:00:00</p>
       </div>
-
-      <svg class="w-20 h-20 sm:w-24 sm:h-24 mx-auto mb-6 -rotate-90" viewBox="0 0 100 100" aria-hidden="true">
-        <circle cx="50" cy="50" r="45" fill="none" stroke="var(--color-hairline)" stroke-width="6" />
-        <circle id="countdown-progress" cx="50" cy="50" r="45" fill="none" stroke="var(--color-ink)" stroke-width="6" stroke-linecap="round"
-          stroke-dasharray="283" stroke-dashoffset="283" class="transition-[stroke-dashoffset] duration-100 ease-linear" />
-      </svg>
 
       <div class="flex items-center justify-center gap-3 flex-wrap">
         <button id="countdown-start" class="grow sm:grow-0 shrink-0 whitespace-nowrap px-5 sm:px-6 py-3.5 sm:py-2.5 rounded-pill bg-ink text-on-primary text-base sm:text-sm font-medium cursor-pointer hover:opacity-90 transition-opacity border-none touch-manipulation focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink/40 focus-visible:ring-offset-2 min-h-[48px]">Start</button>

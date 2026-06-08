@@ -55,7 +55,7 @@ export function initPomodoro() {
       const m = parseInt(parts[0]) || 0;
       const s = parseInt(parts[1]) || 0;
       const total = m * 60 + s;
-      if (total <= 0) return;
+      if (total <= 0) { openDialog(); return; }
       remainingSec = total;
       updateDisplay();
     }
@@ -83,8 +83,7 @@ export function initPomodoro() {
     clearInterval(interval);
     interval = null;
     isRunning = false;
-    remainingSec = 0;
-    if (display) display.textContent = '25:00';
+    remainingSec = 25 * 60;
     if (startBtn) startBtn.textContent = 'Start';
     if (fsContentEl) {
       const fsStart = fsContentEl.querySelector('.fs-start');
@@ -128,7 +127,8 @@ export function initPomodoro() {
     const time = document.createElement('div');
     time.className = 'fs-time';
     time.textContent = formatTime(remainingSec);
-    time.style.cssText = 'font-size: clamp(4rem, 18vw, 10rem); font-weight: 600; color: #ededed; font-family: "JetBrains Mono", monospace; letter-spacing: -0.03em; line-height: 1.1;';
+    time.style.cssText = 'font-size: clamp(4rem, 18vw, 10rem); font-weight: 600; color: #ededed; font-family: "JetBrains Mono", monospace; letter-spacing: -0.03em; line-height: 1.1; cursor: pointer; touch-action: manipulation;';
+    time.addEventListener('click', openDialog);
     fsContentEl.appendChild(time);
 
     const controls = document.createElement('div');
@@ -142,9 +142,13 @@ export function initPomodoro() {
       background: #ededed; color: #171717;
       font-size: 16px; font-weight: 500; cursor: pointer;
       border: none; transition: opacity 0.15s;
+      touch-action: manipulation;
+      -webkit-tap-highlight-color: transparent;
     `;
-    fsStartBtn.addEventListener('mouseenter', () => { fsStartBtn.style.opacity = '0.9'; });
-    fsStartBtn.addEventListener('mouseleave', () => { fsStartBtn.style.opacity = '1'; });
+    if (window.matchMedia('(hover: hover)').matches) {
+      fsStartBtn.addEventListener('mouseenter', () => { fsStartBtn.style.opacity = '0.9'; });
+      fsStartBtn.addEventListener('mouseleave', () => { fsStartBtn.style.opacity = '1'; });
+    }
     fsStartBtn.addEventListener('click', handleFsStart);
     controls.appendChild(fsStartBtn);
 
@@ -155,9 +159,13 @@ export function initPomodoro() {
       background: transparent; color: #a1a1a1;
       font-size: 16px; font-weight: 500; cursor: pointer;
       border: 1px solid #3a3a3a; transition: background 0.15s, color 0.15s;
+      touch-action: manipulation;
+      -webkit-tap-highlight-color: transparent;
     `;
-    fsResetBtn.addEventListener('mouseenter', () => { fsResetBtn.style.background = '#222'; fsResetBtn.style.color = '#ededed'; });
-    fsResetBtn.addEventListener('mouseleave', () => { fsResetBtn.style.background = 'transparent'; fsResetBtn.style.color = '#a1a1a1'; });
+    if (window.matchMedia('(hover: hover)').matches) {
+      fsResetBtn.addEventListener('mouseenter', () => { fsResetBtn.style.background = '#222'; fsResetBtn.style.color = '#ededed'; });
+      fsResetBtn.addEventListener('mouseleave', () => { fsResetBtn.style.background = 'transparent'; fsResetBtn.style.color = '#a1a1a1'; });
+    }
     fsResetBtn.addEventListener('click', handleFsReset);
     controls.appendChild(fsResetBtn);
 

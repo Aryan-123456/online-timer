@@ -12,6 +12,7 @@ export function buildOverlay() {
     z-index: 99999; background: #0a0a0a; overflow: hidden;
     display: flex; flex-direction: column; align-items: center; justify-content: center;
     font-family: Inter, system-ui, sans-serif;
+    touch-action: manipulation;
   `;
 
   const closeBtn = document.createElement('button');
@@ -24,9 +25,13 @@ export function buildOverlay() {
     background: rgba(34,34,34,0.85); border: 1px solid #3a3a3a; border-radius: 50%;
     color: #a1a1a1; font-size: 26px; cursor: pointer; line-height: 1;
     transition: background 0.15s, color 0.15s;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
   `;
-  closeBtn.addEventListener('mouseenter', () => { closeBtn.style.background = '#2a2a2a'; closeBtn.style.color = '#ededed'; });
-  closeBtn.addEventListener('mouseleave', () => { closeBtn.style.background = 'rgba(34,34,34,0.85)'; closeBtn.style.color = '#a1a1a1'; });
+  if (window.matchMedia('(hover: hover)').matches) {
+    closeBtn.addEventListener('mouseenter', () => { closeBtn.style.background = '#2a2a2a'; closeBtn.style.color = '#ededed'; });
+    closeBtn.addEventListener('mouseleave', () => { closeBtn.style.background = 'rgba(34,34,34,0.85)'; closeBtn.style.color = '#a1a1a1'; });
+  }
   closeBtn.addEventListener('click', (e) => { e.stopPropagation(); closeFullscreen(); });
   overlay.appendChild(closeBtn);
 
@@ -37,6 +42,7 @@ export function buildOverlay() {
     gap: 20px; width: 100%; max-width: 700px; padding: 20px;
     padding-top: max(20px, env(safe-area-inset-top, 20px));
     padding-bottom: max(20px, env(safe-area-inset-bottom, 20px));
+    touch-action: manipulation;
   `;
   overlay.appendChild(content);
 

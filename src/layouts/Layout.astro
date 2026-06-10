@@ -7,6 +7,7 @@ export interface Props {
   canonical?: string;
   keywords?: string;
   ogImage?: string;
+  breadcrumbs?: { name: string; url: string }[];
 }
 
 const {
@@ -15,7 +16,19 @@ const {
   canonical = 'https://onlinetimer.online/',
   keywords = 'online timer, timer, stopwatch, online stopwatch, countdown timer, classroom timer, 1 hour timer, stop watch, clock, pomodoro timer, world clock',
   ogImage = 'https://onlinetimer.online/og-image.svg',
+  breadcrumbs,
 } = Astro.props;
+
+const breadcrumbSchema = breadcrumbs ? {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": breadcrumbs.map((crumb, i) => ({
+    "@type": "ListItem",
+    "position": i + 1,
+    "name": crumb.name,
+    "item": crumb.url.startsWith('http') ? crumb.url : `https://onlinetimer.online${crumb.url}`,
+  })),
+} : null;
 ---
 
 <!doctype html>
@@ -40,6 +53,7 @@ const {
     <meta name="apple-mobile-web-app-title" content="Timer" />
     <link rel="manifest" href="/site.webmanifest" />
     <link rel="canonical" href={canonical} />
+    {breadcrumbSchema && <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)}></script>}
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
     <meta name="description" content={description} />

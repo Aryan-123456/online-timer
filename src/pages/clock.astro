@@ -4,7 +4,7 @@ import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
 ---
 
-<Layout title="World Clock — Online Timer" description="Free world clock showing live time across 16 major cities worldwide. Track current time in London, New York, Tokyo, Dubai and more." canonical="https://onlinetimer.online/clock" keywords="world clock, clock, online clock, time zones, world time, online timer">
+<Layout title="World Clock — Online Timer" description="Free world clock showing live time across 16 major cities worldwide. Track current time in London, New York, Tokyo, Dubai and more." canonical="https://onlinetimer.online/clock" keywords="world clock, clock, online clock, time zones, world time, online timer" breadcrumbs={[{ name: "Home", url: "/" }, { name: "World Clock", url: "/clock" }]}>
   <Nav currentPath="/clock" />
 
   <main class="max-w-6xl mx-auto px-5 sm:px-6 py-8 sm:py-12">

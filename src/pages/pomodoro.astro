@@ -4,7 +4,7 @@ import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
 ---
 
-<Layout title="Pomodoro Timer — Online Timer" description="Free online pomodoro timer for productivity. Focus better with timed work sessions using the Pomodoro Technique." canonical="https://onlinetimer.online/pomodoro" keywords="pomodoro timer, online timer, timer, focus timer, productivity timer">
+<Layout title="Pomodoro Timer — Online Timer" description="Free online pomodoro timer for productivity. Focus better with timed work sessions using the Pomodoro Technique." canonical="https://onlinetimer.online/pomodoro" keywords="pomodoro timer, online timer, timer, focus timer, productivity timer" breadcrumbs={[{ name: "Home", url: "/" }, { name: "Pomodoro Timer", url: "/pomodoro" }]}>
   <Nav currentPath="/pomodoro" />
 
   <main class="max-w-2xl mx-auto px-5 sm:px-6 py-8 sm:py-12">

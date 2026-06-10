@@ -4,7 +4,7 @@ import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
 ---
 
-<Layout title="Stopwatch — Online Timer" description="Free online stopwatch with lap recording. Precision stop watch accurate to 10 milliseconds. Track elapsed time with start, stop, and lap controls." canonical="https://onlinetimer.online/stopwatch" keywords="stopwatch, stop watch, online stopwatch, timer, online timer, stopwatch with lap">
+<Layout title="Stopwatch — Online Timer" description="Free online stopwatch with lap recording. Precision stop watch accurate to 10 milliseconds. Track elapsed time with start, stop, and lap controls." canonical="https://onlinetimer.online/stopwatch" keywords="stopwatch, stop watch, online stopwatch, timer, online timer, stopwatch with lap" breadcrumbs={[{ name: "Home", url: "/" }, { name: "Stopwatch", url: "/stopwatch" }]}>
   <Nav currentPath="/stopwatch" />
 
   <main class="max-w-2xl mx-auto px-5 sm:px-6 py-8 sm:py-12">
